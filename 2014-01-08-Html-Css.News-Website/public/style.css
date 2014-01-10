@@ -1,0 +1,36 @@
+@import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+@import url(http://fonts.googleapis.com/css?family=Special+Elite);
+
+header{
+  color : red;
+  border : 3px double green;
+}
+
+header h1{
+ margin-left : 20px;
+ font-family: 'Press Start 2P', cursive;
+ font-size: 75px;
+}
+
+body{
+  background: url(/images/tile.jpg);
+}
+p{
+  font-family: 'Special Elite', cursive;
+  color: orange;
+}
+
+a{
+  border: 1px solid blue;
+  text-decoration: none;
+  background-color: red;
+  color: yellow;
+  padding: 3px;
+  letter-spacing: 2px;
+  border-radius: 10px;
+}
+
+a:hover{
+  background-color: green;
+  color: blue;
+}
