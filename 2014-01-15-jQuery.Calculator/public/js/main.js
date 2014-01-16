@@ -7,6 +7,16 @@ function initialize(){
   $('#product').click(product);
 }
 
+function sum(){
+  var s = 0;
+
+  $('.numbers').each(function(index, element){
+  s += parseFloat(element.value);
+  });
+
+  $('#result').text(s);
+}
+
 function clear(){
     $('#num1').val('');
     $('#num2').val('');
@@ -46,7 +56,7 @@ function compute(x,y,op){
   }
 return result;
 }
-
+/*
 function sum(){
   var result;
 
@@ -64,7 +74,7 @@ function sum(){
   var result = num1 + num2 + num3 + num4 + num5;
   $('#result').text(result);
 }
-
+*/
 function product(){
   var result;
 
