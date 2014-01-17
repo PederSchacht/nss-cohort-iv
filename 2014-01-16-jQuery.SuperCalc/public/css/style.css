@@ -1,6 +1,13 @@
 @import url(http://fonts.googleapis.com/css?family=Orbitron:700);
 
 body{
+  background-color:#000000;
+}
+#body{
+  border-style:ridge;
+  border-width:medium;
+  border-color:#0033cc;
+  border-radius:10px;
   font-family: 'Orbitron', sans-serif;
   background-color:#c0c0c0;
   font-size:xx-large;
@@ -14,16 +21,17 @@ body{
   border-width:medium;
   border-color:#28a3df;
   border-radius:10px;
-  background-color:#999999;
   width:100px;
   text-align: center;
+  margin: 5px;
+  background-color:grey;
 }
-ul{
+.row{
   list-style:none; 
   margin: 5px auto;
 }
 
-li{
+.button{
   display:inline-block;
 }
 
@@ -32,9 +40,11 @@ li{
   border-width:medium;
   border-color:#28a3df;
   border-radius:10px;
-  background-color:white;
   text-align:right;
   padding:5px 20px;
+  margin: 5px;
+  color: #2b81af;
+  background-color: #D2E0E6;
 }
 
 #answer{
@@ -43,5 +53,42 @@ li{
 
 #queue{
   height:400px;
+}
+
+#clear{
+  background-color:#ab0e4c;
+}
+
+#clear:hover{
+  background-color:red;
+}
+
+#push{
+  background-color:#4ca64c;
+}
+
+#push:hover{
+  background-color:green;
+}
+
+.operator{
+  background-color:#6666ff;
+  color:#cccccc;
+}
+
+#sign{
+  background-color:#ffd700;
+}
+
+#sign:hover{
+  background-color:yellow;
+}
+
+li{
+  list-style:none;
+}
+
+.input:hover{
+  background: blue;
 }
 
