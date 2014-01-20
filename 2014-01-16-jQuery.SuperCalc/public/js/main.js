@@ -1,6 +1,6 @@
-$(document).ready(initalize);
+$(document).ready(initialize);
 
-function initalize(){
+function initialize(){
   $('.number').click(displayNumber);
   $('#sign').click(changeSign);
   $('#push').click(pushToQueue);
@@ -12,7 +12,7 @@ function compute(){
   var operator = this.id;
   var $lis = $('#queue li');
   var numbers = parseTags($lis);
-  var result;
+  var result = 0;
   switch(operator){
     case 'add':
       result = numbers[0] + numbers[1];
@@ -27,7 +27,9 @@ function compute(){
       result = numbers[1] /  numbers[0];
       break;
     case 'sum':
-      result = numbers[0] +  numbers[1];
+      for (var i = 0, len=numbers.length;i < len; i++){
+      result += numbers[i];
+      }
       break;
     case 'pow':
       result = Math.pow(numbers[1], numbers[0]);
@@ -55,7 +57,6 @@ function displayNumber(){
     output = current;
   else
     output = display + current;
-  
  $('#answer').text(output);
 }
 

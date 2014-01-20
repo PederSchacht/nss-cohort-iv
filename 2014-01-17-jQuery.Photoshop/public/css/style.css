@@ -1,0 +1,41 @@
+.color{
+  width:50px;
+  height:50px;
+  border:outset grey;
+  box-shadow:2px 2px;
+  margin: 5px;
+  float: left;
+  border-radius:3px;
+}
+
+input[type=button]{
+  border:outset grey;
+  box-shadow:2px 2px;
+  border-radius:3px;
+  background-color:#b2b2b2;
+  font-weight: bold;
+}
+
+input[type=button]:active{
+  border:inset;
+}
+
+.selected{
+  //make red border
+}
+
+.clear{
+  clear: both;
+}
+
+#colors{
+  border: outset 5px grey;
+  background-color:#c0c0c0;
+}
+
+.pixel{
+  width:5px;
+  height:5px;
+  margin:1px;
+  float: left;
+}
