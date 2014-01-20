@@ -1,3 +1,7 @@
+body{
+  background-color:#2f4f61;
+}
+
 .color{
   width:50px;
   height:50px;
@@ -9,11 +13,13 @@
 }
 
 input[type=button]{
-  border:outset grey;
-  box-shadow:2px 2px;
+  border:outset 4px #2f6141;
+  box-shadow:3px 3px;
   border-radius:3px;
-  background-color:#b2b2b2;
+  background-color:#64727a;
   font-weight: bold;
+  margin:3px;
+  color:#acbac2;
 }
 
 input[type=button]:active{
@@ -21,7 +27,7 @@ input[type=button]:active{
 }
 
 .selected{
-  //make red border
+  border:inset white;
 }
 
 .clear{
@@ -29,13 +35,30 @@ input[type=button]:active{
 }
 
 #colors{
-  border: outset 5px grey;
+  border: outset 5px #36612f;
   background-color:#c0c0c0;
+  min-height:66px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .pixel{
   width:5px;
   height:5px;
-  margin:1px;
+  border:solid 1px grey;
+  margin:0px;
   float: left;
 }
+
+#body{
+  border: ridge 10px #3965ae;
+  border-radius:20px;
+  background-color: #e5e5e5;
+  margin-top:10px;
+  margin-left:auto;
+  margin-right:auto;
+  padding: 5px;
+  width:70%;
+  min-height:650px;
+}
+
