@@ -6,6 +6,7 @@ function initialize(){
   $('#push').click(pushToQueue);
   $('.operator').click(compute);
   $('#clear').click(restart);
+  hideAll();
 }
 
 function compute(){
@@ -13,6 +14,19 @@ function compute(){
   var $lis = $('#queue li');
   var numbers = parseTags($lis);
   var result = 0;
+  if(numbers.length < 2){
+    if(operator === 'clear')
+      result = 0;
+    else
+      return;
+  }
+  if(numbers.length > 2  && operator !== 'sum'){
+    if(operator === 'clear')
+      result = 0;
+    else
+      return;
+  }
+  else{
   switch(operator){
     case 'add':
       result = numbers[0] + numbers[1];
@@ -35,7 +49,8 @@ function compute(){
       result = Math.pow(numbers[1], numbers[0]);
   }
   $('#answer').text(result);
-  $('#queue').empty();
+  $('#queue').empty();}
+  hideAll();
 }
 
 function pushToQueue(){
@@ -44,6 +59,12 @@ function pushToQueue(){
   var $li = $('<li>');
   $li.text(display);
   $('#queue').prepend($li);
+  var $lis = $('#queue li');
+  var numbers = parseTags($lis);
+  if(numbers.length === 2)
+    restore();
+  if(numbers.length > 2)
+    hide();
 }
 
 function displayNumber(){
@@ -69,5 +90,19 @@ function changeSign(){
 function restart(){
   $('#answer').text('0');
   $('#queue').empty();
+  hideAll();
+}
+
+function hide(){
+ $('.operator').addClass('hide');
+ $('#sum').removeClass('hide');
+}
+
+function hideAll(){
+ $('.operator').addClass('hide');
+}
+
+function restore(){
+ $('.operator').removeClass('hide');
 }
 

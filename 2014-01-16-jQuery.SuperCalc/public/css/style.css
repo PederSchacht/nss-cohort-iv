@@ -3,6 +3,7 @@
 body{
   background-color:#000000;
 }
+
 #body{
   border-style:ridge;
   border-width:medium;
@@ -90,5 +91,13 @@ li{
 
 .input:hover{
   background: blue;
+}
+
+.hide{
+  background: black;
+}
+
+.hide:hover{
+  background: black;
 }
 
