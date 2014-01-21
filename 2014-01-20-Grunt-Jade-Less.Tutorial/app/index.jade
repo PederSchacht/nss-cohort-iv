@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf8')
+    title Jade Tutorial
+    link(rel='stylesheet', href='/css/style.css')
+    script(src='/js/vendor/jquery-1.10.2.js')
+    script(src='/js/source/main.js')
+  body
+    header
+      h1 Welcome to Jade!
+      img(src='http://th01.deviantart.net/fs48/300W/i/2012/019/6/d/siberian_huskies_1628_by_sooper_husky-d281dyz.jpg') 
+    #section1
+      ul
+        li a
+        li b
+        li c
+      - var firstName = "Peder";
+      h2= firstName
+      - for(var i = 0; i < 100; i++)
+        h3= i
+        h2 world
+    #section2
+      h2 Section 1
+      p This is paragraph 1
+      p 
+        | This is paragraph 2<br>
+        br
+        | Addendum <strong>to</strong> paragraph 2
+        span Span 1
+      footer.foot1.foot2#footerid
+
