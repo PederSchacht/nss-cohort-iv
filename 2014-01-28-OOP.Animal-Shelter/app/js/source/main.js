@@ -27,12 +27,17 @@
       var color = $('<td>');
       var description = $('<td>');
       var photos = $('<td>');
+      var a = $('<a href="#"></a>');
 
       name.text(animals[i].name);
       age.text(animals[i].age);
+      $(age).append(a);
       gender.text(animals[i].gender);
+      $(gender).append(a);
       species.text(animals[i].species);
+      $(species).append(a);
       color.text(animals[i].color);
+      $(color).append(a);
       description.text(animals[i].description);
       for(var z=0; z<photos.length; z++){
         var image = animals[i].photos[z];
