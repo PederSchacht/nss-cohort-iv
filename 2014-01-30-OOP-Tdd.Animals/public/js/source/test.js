@@ -1,4 +1,4 @@
-/*global test:false, deepEqual:false, ok:false, Shelter:false, Animal:false */
+/*global test:false, deepEqual:false, ok:false, Shelter:false, Animal:false, Client:false */
 
 'use strict';
 
@@ -42,7 +42,8 @@ test('Shelter#setHours()', function(){
     {day:'Fri', open:'9am', close:'4pm'}
   ]);
 
-  deepEqual(s1.hours, 'Mon 8am-5pm, Wed 11am-2pm, Fri 9am-4pm', 's1 should have a zero capacity');
+  s1.hours = 'blah';
+  deepEqual(s1.getHours(), 'Mon 8am-5pm, Wed 11am-2pm, Fri 9am-4pm', 's1 should have set hours');
 });
 
 test('Shelter#addAnimal()', function(){
@@ -50,9 +51,7 @@ test('Shelter#addAnimal()', function(){
   var a1 = new Animal('fido');
   s1.addAnimal(a1);
 
-  ok(s1.animals.length === 1, 's1 should have 1 item array');
-  ok(s1.animals[0] instanceof Animal, 's1 should have 1 animal');
-  deepEqual(s1.animals[0].name, 'fido', 'fido should be in the shelter');
+  ok(s1.animalCount() === 1, 's1 should have 1 item array');
 });
 
 test('Shelter#placeAnimal()', function(){
@@ -67,7 +66,7 @@ test('Shelter#placeAnimal()', function(){
   var a4 = s1.placeAnimal('fido');
 
   deepEqual(a4.name, 'fido', 'fido should be placed');
-  deepEqual(s1.animals.length, 2, 'there should be two animals left in the shelter');
+  deepEqual(s1.animalCount(), 2, 'there should be two animals left in the shelter');
 });
 
 //animal
@@ -105,5 +104,28 @@ test('Animal#age',function(){
 
   deepEqual(a1.age, '3', 'a1 should have a age');
   deepEqual(a2.age, 0, 'a1 should not  have an age set');
+});
+
+//client
+test('Client',function(){
+  var c1 = new Client();
+
+  ok(c1 instanceof Client, 'c1 should be an instance of Client');
+});
+
+test('Client#name',function(){
+  var c1 = new Client('bill');
+
+  deepEqual(c1.name, 'bill', 'c1 should have a name');
+});
+
+test('Client#adoptAnimal()', function(){
+  var c1 = new Client('bill');
+  var a1 = new Animal('fido');
+  c1.adoptAnimal(a1);
+
+  ok(c1.animals.length === 1, 'c1 should have 1 item array');
+  ok(c1.animals[0] instanceof Animal, 'c1 should have 1 animal');
+  deepEqual(c1.animals[0].name, 'fido', 'fido should be in the client animals array');
 });
 

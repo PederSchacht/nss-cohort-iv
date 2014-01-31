@@ -4,31 +4,41 @@ var Shelter = (function(){
 
   'use strict';
 
+  var hours;
+  var animals = [];
+
   function Shelter(name){
     this.name = name;
     this.location = 'Not Defined';
     this.capacity = 0;
-    this.animals = [];
   }
 
   Shelter.prototype.setHours = function(times){
-      var hours = _.map(times, function(time){
+      var tmpHours = _.map(times, function(time){
         return time.day+' '+time.open+'-'+time.close;
       });
-      this.hours = hours.join(', ');
+      hours = tmpHours.join(', ');
     };
 
+  Shelter.prototype.getHours = function(){
+    return hours;
+  };
+
   Shelter.prototype.addAnimal = function(animal){
-      this.animals.push(animal);
+      animals.push(animal);
     };
 
   Shelter.prototype.placeAnimal = function(name){
-      var animals =  _.remove(this.animals, function(animal){
+      var tmpAnimals =  _.remove(animals, function(animal){
         return animal.name === name;
       });
 
-      return animals[0];
+      return tmpAnimals[0];
     };
+
+  Shelter.prototype.animalCount = function(){
+    return animals.length;
+  };
 
   return Shelter;
 })();
