@@ -1,30 +1,56 @@
-/* jshint unused: false */
+/* exported Portfolio */
 
-var Portfolio;
-
-function portfolioFactory(name){
+var Portfolio = (function(){
 
   'use strict';
 
-  var stocks = [];
-
-  function PortfolioFn(name){
+  function Portfolio(name){
     this.name = name;
+    this._stocks = [];
   }
 
-  Portfolio = PortfolioFn;
+  Object.defineProperty(Portfolio.prototype, 'stockCount', {
+    get: function(){return this._stocks.length;}
+  });
 
-  Portfolio.prototype.stockCount = function(){
-    return stocks.length;
+  Portfolio.prototype.addStock = function(input){
+    this._stocks = this._stocks.concat(input);
   };
 
-  Portfolio.prototype.addStock = function(stock){
-    stocks.push(stock);
+  Portfolio.prototype.getStock = function(input){
+    var output;
+
+    if(typeof input === 'string'){
+      output = findStock(input, this._stocks);
+    } else {
+      output = _.map(input, function(symbol){
+        return findStock(symbol, this._stocks);
+      }, this);
+    }
+
+    return output;
   };
 
-  Portfolio.prototype.removeStock = function(symbol){
+  Portfolio.prototype.delStock = function(input){
+    var stocks = [].concat(input);
+
+    var output = _.remove(this._stocks, function(stock){
+      return _.contains(stocks, stock.symbol);
+    });
+
+    if(typeof input === 'string'){
+      output = output[0];
+    }
+
+    return output;
   };
 
-  return new PortfolioFn(name);
-}
+  function findStock(symbol, stocks){
+    return _.find(stocks, function(stock){
+      return symbol === stock.symbol;
+    });
+  }
+
+  return Portfolio;
+})();
 

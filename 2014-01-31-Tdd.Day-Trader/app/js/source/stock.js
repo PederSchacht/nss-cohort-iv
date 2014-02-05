@@ -1,40 +1,37 @@
-/* jshint unused: false */
+/* exported Stock */
 
 var Stock = (function(){
 
   'use strict';
 
-  var symbol, shares, purchaseAmount;
-
-  function Stock(iSymbol, iShares, iPurchaseAmount){
-    symbol = iSymbol;
-    shares = iShares;
-    purchaseAmount = iPurchaseAmount;
+  function Stock(symbol, shares, purchaseAmount){
+    this._symbol = symbol;
+    this._shares = shares;
+    this._purchaseAmount = purchaseAmount;
   }
 
-  Stock.prototype.currentPrice = function(fn){
-    var url = 'http://dev.markitondemand.com/Api/v2/Quote/jsonp?symbol=' + symbol + '&callback=?';
-    $.getJSON(url, fn);
-  };
+  Object.defineProperty(Stock.prototype, 'symbol', {
+    get: function(){return this._symbol;}
+  });
+
+  Object.defineProperty(Stock.prototype, 'shares', {
+    get: function(){return this._shares;},
+    set: function(shares){this._shares = shares;}
+  });
+
+  Object.defineProperty(Stock.prototype, 'purchaseAmount', {
+    get: function(){return this._purchaseAmount;}
+  });
 
   Stock.prototype.value = function(fn){
-    this.currentPrice(function(quote){
-      var total = quote.LastPrice * shares;
+    var self = this;
+    var url = 'http://dev.markitondemand.com/Api/v2/Quote/jsonp?symbol=' + this.symbol + '&callback=?';
+    $.getJSON(url, function(quote){
+      var total = quote.LastPrice * self.shares;
       fn(total);
     });
   };
 
-  Stock.prototype.getSymbol = function(){
-    return symbol;
-  };
-
-  Stock.prototype.getShares = function(){
-    return shares;
-  };
-
-  Stock.prototype.getPurchaseAmount = function(){
-    return purchaseAmount;
-  };
-
   return Stock;
 })();
+
