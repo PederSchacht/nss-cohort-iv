@@ -1,0 +1,9 @@
+body {
+  background-color: #adedd8;
+}
+#exercises {
+  width: 100%;
+}
+.hidden {
+  display: none;
+}
