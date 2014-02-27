@@ -14,8 +14,7 @@
     "connect-redis": "*",
     "jade":          "*",
     "express-less":  "*",
-    "rimraf":        "*",
-    "path":          "*"
+    "rimraf":        "*"
   },
   "devDependencies": {
     "grunt":                "*",

@@ -3,9 +3,9 @@
 process.env.DBNAME = 'album-test';
 var app = require('../../app/app');
 var request = require('supertest');
-var rimraf = require('rimraf');
-var fs = require('fs');
 //var expect = require('chai').expect;
+var fs = require('fs');
+var exec = require('child_process').exec;
 var Album;
 
 describe('albums', function(){
@@ -20,15 +20,16 @@ describe('albums', function(){
   });
 
   beforeEach(function(done){
-    var imgdir = __dirname + '/../../app/static/img';
-    rimraf.sync(imgdir);
-    fs.mkdirSync(imgdir);
-    var origfile= __dirname + '/../fixtures/euro.jpg';
-    var copyfile = __dirname +'/../fixtures/euro-copy.jpg';
-    fs.createReadStream(origfile).pipe(fs.createWriteStream(copyfile));
+    var testdir = __dirname + '/../../app/static/img/test*';
+    var cmd = 'rm -rf' + testdir;
 
-    global.nss.db.dropDatabase(function(err, result){
-      done();
+    exec(cmd, function(){
+      var origfile = __dirname + '/../fixtures/euro.jpg';
+      var copyfile = __dirname + '/../fixtures/euro-copy.jpg';
+      fs.createReadStream(origfile).pipe(fs.createWriteStream(copyfile));
+      global.nss.db.dropDatabase(function(err, result){
+        done();
+      });
     });
   });
 
@@ -43,10 +44,11 @@ describe('albums', function(){
   describe('POST /albums', function(){
     it('should create a new album and send user back to home', function(done){
       var filename = __dirname + '/../fixtures/euro-copy.jpg';
+
       request(app)
       .post('/albums')
       .attach('cover', filename)
-      .field('title', 'European Vacation')
+      .field('title', 'Test European Vacation')
       .field('taken', '2014-02-25')
       .expect(302, done);
     });

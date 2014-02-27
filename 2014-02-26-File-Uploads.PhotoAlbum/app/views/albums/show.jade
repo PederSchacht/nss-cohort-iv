@@ -9,32 +9,26 @@ html(class='no-js', lang='en')
     link(rel='stylesheet', href='/css/foundation.css')
     link(rel='stylesheet', href='/less/app.css')
     script(src='/js/vendor/modernizr.js')
-  body
+  body.css(style='background-image:url("'+album.cover+'")')
     .row
       .small-12.columns
         h1=title
     .row
       .small-12.columns
-        form(action='/albums', method='post', enctype='multipart/form-data')
+        form(action='/albums/'+album._id, method='post', enctype='multipart/form-data')
           fieldset
-            legend= title
+            legend Add Photo
             .row
-              .small-4.columns
-                label Title
-                input(type='text', name='title')
-              .small-4.columns
-                label Date Taken
-                input(type='date', name='taken')
-              .small-4.columns
-                label Cover Image
-                input(type='file', name='cover')
+              .small-12.columns
+                label Photo
+                input(type='file', name='photo')
             .row
               .small-4.columns
                 &nbsp;
               .small-4.columns
                 &nbsp;
               .small-4.columns
-                button.small.radius Insert Album
+                button.small.radius Add Photo
 
     script(src='/js/vendor/jquery.js')
     script(src='/js/vendor/foundation.js')
