@@ -23,11 +23,15 @@ html(class='no-js', lang='en')
           li: a(href="/") Home
           li.divider
           if user
-            li: a(href="/")= user ? user.email : 'anon'
-            li.divider
-            li.has-form
-              form(action='/logout', method='post')
-                button.alert.small.radius Logout
+            li: a(href='/notes') Notes
+          li.divider
+          if user
+            li.has-dropdown.not-click
+              a(href="/")= user ? user.email : 'anon'
+              ul.dropdown
+                li.has-form
+                  form(action='/logout', method='post')
+                    button.alert.tiny.radius.expand Logout
           else
             li: a(href="/auth") Register/Login
     .row

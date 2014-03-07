@@ -1,7 +1,13 @@
 'use strict';
 
+var url = require('url');
+var _ = require('lodash');
+
 module.exports = function(req, res, next){
-  if(req.url === '/' || req.url === '/auth' || req.url === '/register' || req.url === '/login'){
+  var path = url.parse(req.url).pathname;
+  var urls = ['/', '/auth', '/register', '/login'];
+
+  if(_.contains(urls, path)){
     next();
   }else{
     if(req.session.userId){
